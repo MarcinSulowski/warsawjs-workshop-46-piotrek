@@ -17,5 +17,8 @@
  * Output = 'John Doe earns 2000 dollars.'
  * ```
  */
-export function getSentences (employees) {
+export function getSentences(employees) {
+  return employees.map(
+    (emp) => `${emp.firstName} ${emp.lastName} earns ${emp.salary} dollars.`
+  )
 }

@@ -21,4 +21,9 @@
  * ```
  */
 export function getTotalSalary (employees) {
+    return employees.reduce((acc, curr) => acc + curr.salary, 0)
 }
+// alternative
+// export function getTotalSalary (employees) {
+//     return employees.map(emp => emp.salary).reduce((acc, curr) => acc + curr, 0)
+// }
