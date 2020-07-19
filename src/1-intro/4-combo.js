@@ -27,4 +27,15 @@
  * ]
  * ```
  */
-export function getHighEarnersByPosition (employees) {}
+import { getHighEarners } from './3-filter'
+export function getHighEarnersByPosition(employees) {
+  return employees
+    .map((emp) => emp.position)
+    .filter((val, idx, arr) => arr.indexOf(val) === idx)
+    .map((position) => ({
+      position,
+      employees: getHighEarners(
+        employees.filter((emp) => emp.position === position)
+      ),
+    }))
+}
