@@ -4,18 +4,21 @@ in the Maybe monad.
 */
 
 const Maybe = {
-  just (value) {
+  just(value) {
     return {
       value,
-      bind: fn => fn(value)
+      bind: (fn) => fn(value),
     }
   },
-  nothing () {
+  nothing() {
     return {
-      bind: Maybe.nothing
+      bind: Maybe.nothing,
     }
-  }
+  },
 }
 
-export function safeGetProp (object, prop) {
+export function safeGetProp(object, prop) {
+  return typeof object === 'object' && object !== null && prop in object
+    ? Maybe.just(object[prop])
+    : Maybe.nothing()
 }
