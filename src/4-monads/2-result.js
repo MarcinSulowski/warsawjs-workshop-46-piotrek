@@ -21,4 +21,17 @@ safeDiv(1, 2).bind(x => Result.ok(x + 1)) // Result.ok(1.5)
 safeDiv(1, 0).bind(x => Result.ok(x + 1)) // Result.error('cannot divide by 0')
 */
 
-export const Result = {}
+export const Result = {
+  ok(value) {
+    return {
+      value,
+      bind: (fn) => fn(value),
+    }
+  },
+  error(error) {
+    return {
+      error,
+      bind: () => Result.error(error),
+    }
+  },
+}
